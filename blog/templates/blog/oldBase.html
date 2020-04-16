@@ -1,5 +1,3 @@
-<!-- we can load that css file from our static directory -->
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,10 +8,6 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <!-- to load in our css file -->
-    <!-- generates an absolute url of the static files and accesses that main.css -->
-    <link rel="stylesheet" type="text/css" href="{% static "blog/main.css" %}">
 
     {% if title %}
         <title>Blog Home - {{ title }}</title>
@@ -44,26 +38,12 @@
         </div>
       </nav>
     </header>
-    <main role="main" class="container">
-      <div class="row">
-        <div class="col-md-8">
-          {% block content %}{% endblock %}
-        </div>
-        <div class="col-md-4">
-          <div class="content-section">
-            <h3>Our Sidebar</h3>
-            <p class='text-muted'>You can put any information here you'd like.
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Latest Posts</li>
-                <li class="list-group-item list-group-item-light">Announcements</li>
-                <li class="list-group-item list-group-item-light">Calendars</li>
-                <li class="list-group-item list-group-item-light">etc</li>
-              </ul>
-            </p>
-          </div>
-        </div>
-      </div>
-    </main>
+    <!-- wrap our content with div, with class of container, gives content some padding/spacing -->
+    <div class="container">
+        <!-- this let's the child templates overwrite this section -->
+        {% block content %}{% endblock %}
+    </div>
+
     <!-- taken from bootstrap starter template, with these changes we can use bootstrap css classes-->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

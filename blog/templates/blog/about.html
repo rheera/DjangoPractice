@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!-- Title is what appears on the tab bar -->
-    <!-- if we don't have a title let's print a basic Blog Home title -->
-    {% if title %}
-        <title>Blog Home - {{ title }}</title>
-    {% else %}
-        <title>Blog Home</title>
-    {% endif %}
-</head>
-<body>
+{% extends "blog/base.html" %}
+{% block content %}
     <h1>About Page</h1>
-</body>
-</html>
+<!-- you don't need to type content here but it just helps makes things clear, we are ending the block for content
+{% endblock content %}

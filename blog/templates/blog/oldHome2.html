@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <!-- only need the things inside body which were unique to home.html, don't need the body tags even -->
+    {% for post in posts %}
+        <!-- use double curly brackets for variables -->
+        <!-- in the h1 header we want the title, don't need to do a .get just post.title -->
+        <h1>{{ post.title }}</h1>
+        <p>By {{ post.author }} on {{ post.date_posted }} </p>
+        <p>{{ post.content }}</p>
+    <!-- need to write endfor and endif to the tell the code when the loop is done -->
+    {% endfor %}
+<!-- you don't need to type content here but it just helps makes things clear, we are ending the block for content
+{% endblock content %}
