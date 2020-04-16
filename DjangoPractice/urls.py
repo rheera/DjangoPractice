@@ -14,8 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+# need to add include
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # now when we open the browser and go to /blogs we will map to our urls file in blog folder which maps to our home view
+    # path('blog/', include("blog.urls")),
+    # if we want the homepage to be the blog then we can leave the path empty
+    path('', include("blog.urls")),
+
 ]
