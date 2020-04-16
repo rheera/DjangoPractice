@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Title is what appears on the tab bar -->
+    <!-- if we don't have a title let's print a basic Blog Home title -->
+    {% if title %}
+        <title>Blog Home - {{ title }}</title>
+    {% else %}
+        <title>Blog Home</title>
+    {% endif %}
+</head>
+<body>
+    <h1>About Page</h1>
+</body>
+</html>

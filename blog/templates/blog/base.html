@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+        <title>Blog Home - {{ title }}</title>
+    {% else %}
+        <title>Blog Home</title>
+    {% endif %}
+</head>
+<body>
+    <!-- this let's the child templates overwrite this section -->
+    {% block content %}{% endblock %}
+</body>
+</html>
