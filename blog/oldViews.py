@@ -5,6 +5,29 @@ from django.http import HttpResponse
 from .models import Post
 
 
+# adding some dummy data to pass into our templates
+# list of dictionaries
+# each dictionary is information associated with one post
+# let's pretend we made a database call and got back this list
+# we can create a dictionary and put that data into there
+posts = [
+    {
+        "author": "Corey",
+        "title": "Blog Post 1",
+        "content": "First post content",
+        # normally would be a date time object
+        "date_posted": "April 16, 2020"
+    },
+    {
+        "author": "Jane Doe",
+        "title": "Blog Post 2",
+        "content": "Second post content",
+        # normally would be a date time object
+        "date_posted": "April 10, 2020"
+    }
+]
+
+
 # Home handles traffic from the homepage of our blog
 # takes in a request argument
 # need to map home to a url in urls.py in the blog folder
