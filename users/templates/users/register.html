@@ -12,7 +12,8 @@
                 <!-- legend gives form more detail, border-bottom is a bootstrap class, mb is margin bottom -->
                 <legend class="border-bottom mb-4">Join Today</legend>
                 <!-- printing out our form, with that form variable we made in views -->
-                {{ form }}
+                <!-- .as_p method renders the form in paragraph tags, makes it look cleaner, splits the lines up -->
+                {{ form.as_p }}
             </fieldset>
             <!-- submit button is not included in our form -->
             <div class="form-group">

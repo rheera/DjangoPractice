@@ -50,6 +50,16 @@
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8">
+          <!-- going to put our flash messages here in the base template so any messages we need will be shown on all pages -->
+          {% if messages %}
+              {% for message in messages %}
+                  <!-- bootstrap class for alerts, they have a lot, same as messages types we have (success, warning, error etc.) -->
+                  <!-- so we just take the tags of the message it'll display an alert of the same type -->
+                  <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                  </div>
+              {% endfor %}
+          {% endif %}
           {% block content %}{% endblock %}
         </div>
         <div class="col-md-4">
