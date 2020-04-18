@@ -1,0 +1,24 @@
+<!-- don't need to make a new base.html -->
+{% extends "blog/base.html" %}
+{% block content %}
+    <!-- custom class that's within our CSS file for styling -->
+    <div class="content-section">
+        <form method="POST">
+            <!-- need to add a CSRF token, hidden tag, that we need to add, protects form against attacks -->
+            <!-- with this token we can access that form variable we made in views -->
+            {% csrf_token %}
+            <!-- fieldset is used to group related elements in a form, form-group is a bootstrap class -->
+            <fieldset class="form-group">
+                <!-- legend gives form more detail, border-bottom is a bootstrap class, mb is margin bottom -->
+                <legend class="border-bottom mb-4">Join Today</legend>
+                <!-- printing out our form, with that form variable we made in views -->
+                {{ form }}
+            </fieldset>
+            <!-- submit button is not included in our form -->
+            <div class="form-group">
+                <!-- btn is a bootstrap class, and has to be type submit since it's a submit button, with text sign up -->
+                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

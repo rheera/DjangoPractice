@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     # need to keep adding apps to this list every time we create an app
     # and for databases and where Django looks for our models
     'blog.apps.BlogConfig',
+    'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
