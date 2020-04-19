@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     # and for databases and where Django looks for our models
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -124,3 +125,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+# crispy-forms default is bootstrap 2, which is old, so change it to a newer one
+# look at crispy documentation to see what else you can change it to
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
