@@ -125,6 +125,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+# set a path for uploaded files, stored on filesystem not database for performance
+# os.path BASE_DIR makes sure that the path is made correctly no matter what OS, no need to hardcode
+# BASE_DIR is the projects base directory, so in our base directory we'll have a folder named media
+# since we have profile_pics saved to a profile_pics folder that folder will be created inside this media directory
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# public url of that directory, how we'll access the media in our browser
+MEDIA_URL = '/media/'
 # crispy-forms default is bootstrap 2, which is old, so change it to a newer one
 # look at crispy documentation to see what else you can change it to
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
