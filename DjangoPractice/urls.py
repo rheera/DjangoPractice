@@ -20,6 +20,9 @@ from django.urls import path, include
 from users import views as user_views
 # these are views DJango provides for logins/logouts, any time you import views use as so it's specific
 from django.contrib.auth import views as auth_views
+# serving static media content during development, taken from Django documentation
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -40,3 +43,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('profile/', user_views.profile, name='profile'),
 ]
+# taken from Django documentation for serving static media during development
+# if isn't needed just makes it clear that we're only doing this if we're in debug mode
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
