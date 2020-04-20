@@ -32,7 +32,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <!-- instead of harcoding the paths here, we should use a variable so we don't have to change this if we change the path -->
+              <!-- instead of hard coding the paths here, we should use a variable so we don't have to change this if we change the path -->
               <!-- instead of href="/" for home page use blog-home which is the name for our url pattern in urls.py -->
               <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
               <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
@@ -41,6 +41,7 @@
             <!-- changing Navbar so if the user is logged in then show logout, or show login/register -->
             <div class="navbar-nav">
               {% if user.is_authenticated %}
+                  <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
                   <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
               {% else %}
                   <!-- href="#" means it links to a dead link, not ready yet -->

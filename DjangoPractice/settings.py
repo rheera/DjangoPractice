@@ -130,3 +130,7 @@ STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # we want users to redirect to home page when the login
 LOGIN_REDIRECT_URL = 'blog-home'
+# will redirect the user to the login page, if they try to access /profile without being logged in
+# Django built in keeps a next argument in the url, to remember what page you're trying to go to next
+# So you access profile but aren't logged in so you get sent to the log in page, once you log in you'll get to profile
+LOGIN_URL = 'login'

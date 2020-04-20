@@ -7,6 +7,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 # need to inherit from the form we created
 from .forms import UserRegisterForm
+# login required decorator, checks if a user is logged in to allow them on a certain page
+from django.contrib.auth.decorators import login_required
 
 def register(request):
     # if we get a post request, we will instantiate a user creation form with the post data
@@ -28,3 +30,9 @@ def register(request):
         form = UserRegisterForm()
     # always need to pass request, then template name, then context
     return render(request, 'users/register.html', {'form': form})
+
+
+# profile page for users
+@login_required
+def profile(request):
+    return render(request, 'users/profile.html')
