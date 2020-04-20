@@ -19,8 +19,9 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             # since it is valid we'll send a success message
-            messages.success(request, f"Account created for {username}!")
-            return redirect("blog-home")
+            messages.success(request, f"Your account has been created for {username}, now you ca login!")
+            # redirect users to login page
+            return redirect("login")
     # otherwise it'll just be an empty form
     else:
         # create a new instance of the form
