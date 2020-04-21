@@ -6,9 +6,10 @@ from django.shortcuts import render, redirect
 # ex. messages.debug, messages.info, messages.success, messages.warning, messages.error
 from django.contrib import messages
 # need to inherit from the form we created
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 # login required decorator, checks if a user is logged in to allow them on a certain page
 from django.contrib.auth.decorators import login_required
+
 
 def register(request):
     # if we get a post request, we will instantiate a user creation form with the post data
@@ -35,4 +36,30 @@ def register(request):
 # profile page for users
 @login_required
 def profile(request):
-    return render(request, 'users/profile.html')
+    # this is run when we submit our form
+    if request.method == "POST":
+        # to populate form with current users info
+        # these are model forms expecting to work on object, we can populate the forms by passing in an object
+        # we can pass in an instance of the object it's expecting, so for user_update_form it'll be an instance of a user
+        # request.POST passes in the POST data, and we leave the instances set so it knows what profile and user we want to update
+        user_update_form = UserUpdateForm(request.POST, instance=request.user)
+        # profile data has a picture file so we need to add that
+        profile_update_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+
+        # need to check if both forms are valid then we'll save them
+        if user_update_form.is_valid() and profile_update_form.is_valid():
+            user_update_form.save()
+            profile_update_form.save()
+            messages.success(request, f"Your profile has been updated!")
+            # want to redirect here and not let it fall all the way down  because of POST GET redirect pattern
+            # when you reload your browser after submitting a form and you get that popup are you sure you want to resubmit
+            return redirect("profile")
+    else:
+        user_update_form = UserUpdateForm(instance=request.user)
+        profile_update_form = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {
+        'user_update_form': user_update_form,
+        'profile_update_form': profile_update_form
+    }
+    return render(request, 'users/profile.html', context)

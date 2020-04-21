@@ -3,7 +3,8 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-
+# need to create a profile form as well to update profile pic
+from .models import Profile
 
 # extends UserCreationForm
 class UserRegisterForm(UserCreationForm):
@@ -17,3 +18,18 @@ class UserRegisterForm(UserCreationForm):
         # fields we want in the form and in what order
         # password1 is the first tie they type and password2 is the confirmation
         fields = ['username', 'email', 'password1', 'password2']
+
+
+# user update their information
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+
+class ProfileUpdateForm(forms.ModelForm):
+    # don't need any extra fields so we can jump straight into meta
+    class Meta:
+        model = Profile
+        fields = ['image']
