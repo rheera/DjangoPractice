@@ -3,18 +3,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 # import post class as a table
 from .models import Post
-# importing list view for home page
-from django.views.generic import ListView
 
-# new list view for posts inheriting from ListView
-class PostListView(ListView):
-    # tells list view what model to query
-    model = Post
-    template_name = 'blog/home.html' #<app>/<model>_<viewtype>.html
-    # need to tell it what variable we will be looping over
-    # by default list view calls it object_list, we have it called posts in the function
-    # we can go to template to change posts to object_list, or set a variable
-    context_object_name = 'posts'
+
 # Home handles traffic from the homepage of our blog
 # takes in a request argument
 # need to map home to a url in urls.py in the blog folder
