@@ -41,6 +41,7 @@
             <!-- changing Navbar so if the user is logged in then show logout, or show login/register -->
             <div class="navbar-nav">
               {% if user.is_authenticated %}
+                  <a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
                   <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
                   <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
               {% else %}
