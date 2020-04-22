@@ -5,11 +5,12 @@ from django.http import HttpResponse
 from .models import Post
 # importing list view for home page
 # you can split up a long import by surrounding the imports with brackets
-from django.views.generic import ListView, DetailView, CreateView
-
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
+# For our class based views that require you to be logged in
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 # Create view to post a single blog post, going to create a form we just need to provide the fields
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     # don't need to add author since it'll be user that's signed in, and date will be automatic
     fields = ['title', 'content']
@@ -19,6 +20,24 @@ class PostCreateView(CreateView):
         # before you submit the form take that instance and set the author to current logged in user
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+# Create view to post a single blog post, going to create a form we just need to provide the fields
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Post
+    fields = ['title', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    # to see if user passes a certain test condition
+    def test_func(self):
+        # this gets the current post we're updating
+        post = self.get_object()
+        # see if the current user requesting to update is same as posts author
+        if self.request.user == post.author:
+            return True
+        return False
 
 
 # Detail view to view a single blog post
