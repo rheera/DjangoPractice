@@ -4,6 +4,8 @@ from django.utils import timezone
 # for author, using the user table Django created
 # Users will author posts, 1 to many relationship, 1 user can make many posts, a post can only be made by one author
 from django.contrib.auth.models import User
+# need to import reverse to get the url we need to redirect to after post is created
+from django.urls import reverse
 
 
 # We're going to make a post class to handle our blog posts that inherits from models class
@@ -29,3 +31,8 @@ class Post(models.Model):
     # need to make this so that when we query our posts they'll give us the title
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        # reverse gives full url path as string
+        # we want the path to post-detail route and it needs a primary key parameter, and the value of the pk is self.pk
+        return reverse('post-detail', kwargs={'pk': self.pk})

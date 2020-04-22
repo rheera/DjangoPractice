@@ -4,7 +4,21 @@ from django.http import HttpResponse
 # import post class as a table
 from .models import Post
 # importing list view for home page
-from django.views.generic import ListView, DetailView
+# you can split up a long import by surrounding the imports with brackets
+from django.views.generic import ListView, DetailView, CreateView
+
+
+# Create view to post a single blog post, going to create a form we just need to provide the fields
+class PostCreateView(CreateView):
+    model = Post
+    # don't need to add author since it'll be user that's signed in, and date will be automatic
+    fields = ['title', 'content']
+
+    # need to override form_valid method to make the user that's signed in the author
+    def form_valid(self, form):
+        # before you submit the form take that instance and set the author to current logged in user
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 # Detail view to view a single blog post
