@@ -12,7 +12,8 @@
               <!-- using | as a filter to get the date without the time, look at Django date filters for format -->
               <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
             </div>
-            <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+            <!-- need to add post.id so it adds primary key to url -->
+            <h2><a class="article-title" href={% url 'post-detail' post.id %}>{{ post.title }}</a></h2>
             <p class="article-content">{{ post.content }}</p>
           </div>
         </article>
