@@ -2,7 +2,10 @@
 from django.urls import path
 # . is the current directory
 from . import views
-# from .views import PostListView, PostDetailView, PostCreateView, PostUpdateView don't think I need this
+# don't think I need this since above line is importing entire views
+from .views import (
+    PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView
+)
 
 urlpatterns = [
     # we can leave the path empty, so the empty path is the home page
@@ -15,6 +18,7 @@ urlpatterns = [
     # we need an url that contains a variable since we have to go to blog1 or blog 2
     # <pk> is for the primary key variable, int: pk means we expect pk to only be ints so people can't put strings and stuff
     path('post/<int:pk>/', views.PostDetailView.as_view(), name="post-detail"),
+    path('post/<int:pk>/delete', views.PostDeleteView.as_view(), name="post-delete"),
     # need to include pk for update as well so we know which post we are updating
     path('post/<int:pk>/update/', views.PostUpdateView.as_view(), name="post-update"),
     path('post/new/', views.PostCreateView.as_view(), name="post-create"),
