@@ -74,6 +74,7 @@ class PostListView(ListView):
     context_object_name = 'posts'
     # order posts so that newest is at the top
     ordering = ['-date_posted']
+    paginate_by = 2
 
 
 # Home handles traffic from the homepage of our blog
