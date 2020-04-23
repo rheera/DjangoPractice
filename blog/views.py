@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 # don't need the HttpResponse import when using templates, since it uses render
 from django.http import HttpResponse
 # import post class as a table
@@ -8,6 +8,7 @@ from .models import Post
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 # For our class based views that require you to be logged in
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
 
 
 # Create view to post a single blog post, going to create a form we just need to provide the fields
@@ -74,7 +75,25 @@ class PostListView(ListView):
     context_object_name = 'posts'
     # order posts so that newest is at the top
     ordering = ['-date_posted']
-    paginate_by = 2
+    paginate_by = 5
+
+
+# List all the posts of a single user/author
+class UserPostListView(ListView):
+    model = Post
+    template_name = 'blog/user_posts.html'
+    context_object_name = 'posts'
+    paginate_by = 5
+
+    def get_queryset(self):
+        # get an object from database if it exists otherwise it'll return a 404
+        # get the User from the user model
+        # get the user whose username matches the username in the url kwargs are query parameters
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        # return all posts made by that user, since we are overriding the method the order by in the original class needs to be rewritten
+        return Post.objects.filter(author=user).order_by('-date_posted')
+
+
 
 
 # Home handles traffic from the homepage of our blog

@@ -1,50 +1,37 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    <!-- only need the things inside body which were unique to home.html, don't need the body tags even -->
+    <!-- get the username passed into the url and their total number of posts -->
+    <h1 class="mb-3">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
     {% for post in posts %}
         <article class="media content-section">
-          <!-- show the authors profile pic -->
-          <!-- article-img is one of corey's custom classes -->
           <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
           <div class="media-body">
             <div class="article-metadata">
               <a class="mr-2" href="{% url 'user-post' post.author.username %}">{{ post.author }}</a>
-              <!-- using | as a filter to get the date without the time, look at Django date filters for format -->
               <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
             </div>
-            <!-- need to add post.id so it adds primary key to url -->
             <h2><a class="article-title" href={% url 'post-detail' post.id %}>{{ post.title }}</a></h2>
             <p class="article-content">{{ post.content }}</p>
           </div>
         </article>
     {% endfor %}
-    <!-- pagination logic -->
-    <!-- is_paginated tells us if this page is paginated -->
     {% if is_paginated %}
-        <!-- if paginated print out paginated links, various styles, we're going to do first page and previous page -->
-        <!-- page object that view passed into our template -->
         {% if page_obj.has_previous %}
-            <!-- if has a previous page give them a link for first page and previous -->
             <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
             <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
         {% endif %}
 
-        <!-- iterate through each page -->
         {% for num in page_obj.paginator.page_range %}
             {% if page_obj.number == num %}
-                <!-- if the page number is the page we're on then make the button a little different, maybe don't make it clickable? -->
                 <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
-            <!-- if the numb we're on is within the 3 previous pages and next, then print it out -->
             {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
                 <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
             {% endif %}
         {% endfor %}
 
         {% if page_obj.has_next %}
-            <!-- if has a previous page give them a link for first page and previous -->
             <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
             <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
         {% endif %}
     {% endif %}
-<!-- you don't need to type content here but it just helps makes things clear, we are ending the block for content
 {% endblock content %}

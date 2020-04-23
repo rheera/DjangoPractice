@@ -4,7 +4,7 @@ from django.urls import path
 from . import views
 # don't think I need this since above line is importing entire views
 from .views import (
-    PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView
+    PostListView, PostDetailView, PostCreateView, PostUpdateView, PostDeleteView, UserPostListView
 )
 
 urlpatterns = [
@@ -24,4 +24,5 @@ urlpatterns = [
     path('post/new/', views.PostCreateView.as_view(), name="post-create"),
     path('entries/', views.entries, name="blog-entries"),
     path('about/', views.about, name="blog-about"),
+    path('user/<str:username>', views.UserPostListView.as_view(), name="user-post"),
 ]
