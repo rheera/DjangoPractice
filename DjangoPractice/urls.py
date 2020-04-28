@@ -42,6 +42,18 @@ urlpatterns = [
     # by default logout will take you to admin logout page, which we don't want, don't want unnecessary access to admin page
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('profile/', user_views.profile, name='profile'),
+    # path that will send password reset instructions to the users email
+    path('password-reset/',
+         auth_views.PasswordResetView.as_view(template_name='users/password_reset.html'),
+         name='password_reset'),
+    # page for if the password reset form has been submitted correctly
+    path('password-reset/done/',
+         auth_views.PasswordResetDoneView.as_view(template_name='users/password_reset_done.html'),
+         name='password_reset_done'),
+    # expects those two parameters uid and token, view is PasswordResetConfirm
+    path('password-reset-confirm/<uidb64>/<token>/',
+         auth_views.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'),
+         name='password_reset_confirm'),
 ]
 # taken from Django documentation for serving static media during development
 # if isn't needed just makes it clear that we're only doing this if we're in debug mode

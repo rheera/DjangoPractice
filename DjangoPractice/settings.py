@@ -141,3 +141,13 @@ LOGIN_REDIRECT_URL = 'blog-home'
 # Django built in keeps a next argument in the url, to remember what page you're trying to go to next
 # So you access profile but aren't logged in so you get sent to the log in page, once you log in you'll get to profile
 LOGIN_URL = 'login'
+# to protect gmail email and password add them as environment variables then access them
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+# EMAIL_HOST_USER = 'ramanheera0@gmail.com'
+# EMAIL_HOST_PASSWORD = 'dxndgflyjqzddeau'
+# to send emails
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
