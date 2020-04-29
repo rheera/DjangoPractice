@@ -18,9 +18,9 @@ class Profile(models.Model):
 
     # method that already exists in parent class, ran after our model is saved
     # this method might not be the most efficient to resize photos, but it's simple
-    def save(self):
+    def save(self, *args, **kwargs):
         # this runs our normal save function
-        super().save()
+        super().save(*args, **kwargs)
         # opens image of the current instance
         img = Image.open(self.image.path)
         # if the height or width of the image is greater than 300 resize it to 300 by 300
