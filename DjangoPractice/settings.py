@@ -144,8 +144,6 @@ LOGIN_URL = 'login'
 # to protect gmail email and password add them as environment variables then access them
 EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
-# EMAIL_HOST_USER = 'ramanheera0@gmail.com'
-# EMAIL_HOST_PASSWORD = 'dxndgflyjqzddeau'
 # to send emails
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
