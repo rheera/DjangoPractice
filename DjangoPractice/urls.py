@@ -54,6 +54,10 @@ urlpatterns = [
     path('password-reset-confirm/<uidb64>/<token>/',
          auth_views.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'),
          name='password_reset_confirm'),
+    # password reset complete
+    path('password-reset-complete/',
+         auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'),
+         name='password_reset_complete'),
 ]
 # taken from Django documentation for serving static media during development
 # if isn't needed just makes it clear that we're only doing this if we're in debug mode
