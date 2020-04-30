@@ -6,7 +6,7 @@
         <option name="rootFolder" value="$MODULE_DIR$" />
         <option name="settingsModule" value="DjangoPractice/settings.py" />
         <option name="manageScript" value="$MODULE_DIR$/manage.py" />
-        <option name="environment" value="&lt;map&gt;&#10;  &lt;entry&gt;&#10;    &lt;string&gt;EMAIL_USER&lt;/string&gt;&#10;    &lt;string&gt;ramanheera0@gmail.com&lt;/string&gt;&#10;  &lt;/entry&gt;&#10;  &lt;entry&gt;&#10;    &lt;string&gt;EMAIL_PASSWORD&lt;/string&gt;&#10;    &lt;string&gt;fboxfvuvatxzrjju&lt;/string&gt;&#10;  &lt;/entry&gt;&#10;&lt;/map&gt;" />
+        <option name="environment" value="&lt;map&gt;&#10;  &lt;entry&gt;&#10;    &lt;string&gt;EMAIL_USER&lt;/string&gt;&#10;    &lt;string&gt;ramanheera0@gmail.com&lt;/string&gt;&#10;  &lt;/entry&gt;&#10;  &lt;entry&gt;&#10;    &lt;string&gt;SECRET_KEY&lt;/string&gt;&#10;    &lt;string&gt;f4e0a481c9bce7e1e528e20dc1a41c8b83c50950f1f4fa18&lt;/string&gt;&#10;  &lt;/entry&gt;&#10;  &lt;entry&gt;&#10;    &lt;string&gt;DEBUG_VALUE&lt;/string&gt;&#10;    &lt;string&gt;True&lt;/string&gt;&#10;  &lt;/entry&gt;&#10;  &lt;entry&gt;&#10;    &lt;string&gt;EMAIL_PASSWORD&lt;/string&gt;&#10;    &lt;string&gt;fboxfvuvatxzrjju&lt;/string&gt;&#10;  &lt;/entry&gt;&#10;&lt;/map&gt;" />
         <option name="doNotUseTestRunner" value="false" />
         <option name="trackFilePattern" value="migrations" />
       </configuration>
