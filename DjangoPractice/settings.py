@@ -123,7 +123,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
+# set up static root for Heroku, this is where they will store static files 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 # set a path for uploaded files, stored on filesystem not database for performance
 # os.path BASE_DIR makes sure that the path is made correctly no matter what OS, no need to hardcode
