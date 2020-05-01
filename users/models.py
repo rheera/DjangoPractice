@@ -16,15 +16,15 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
 
 
-    # method that already exists in parent class, ran after our model is saved
-    # this method might not be the most efficient to resize photos, but it's simple
-    def save(self, *args, **kwargs):
-        # this runs our normal save function
-        super().save(*args, **kwargs)
-        # opens image of the current instance
-        img = Image.open(self.image.path)
-        # if the height or width of the image is greater than 300 resize it to 300 by 300
-        if img.height > 300 or img.width > 300:
-            output_size = (300, 300)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
+    # # method that already exists in parent class, ran after our model is saved
+    # # this method might not be the most efficient to resize photos, but it's simple
+    # def save(self, *args, **kwargs):
+    #     # this runs our normal save function
+    #     super().save(*args, **kwargs)
+    #     # opens image of the current instance
+    #     img = Image.open(self.image.path)
+    #     # if the height or width of the image is greater than 300 resize it to 300 by 300
+    #     if img.height > 300 or img.width > 300:
+    #         output_size = (300, 300)
+    #         img.thumbnail(output_size)
+    #         img.save(self.image.path)

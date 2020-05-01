@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -154,3 +155,14 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 # automatically sets a lot of our configurations for Heroku
 django_heroku.settings(locals())
+# AWS variables
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+# Additional AWS settings
+# If a user uploads a file with the same name we don't want it to overwrite
+# So if two users upload a file profilepic.jpg they will each have their own versions
+AWS_S3_FILE_OVERWRITE = False
+# Might be default set to None but just incase
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
